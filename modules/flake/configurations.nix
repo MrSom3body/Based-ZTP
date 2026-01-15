@@ -25,6 +25,7 @@
         };
     in
     {
+      # server
       lambda = mkNixos "lambda" (
         with config.flake.modules.nixos;
         [
@@ -32,6 +33,7 @@
           hw-detect
         ]
       );
+      # router
       omega = mkNixos "omega" (
         with config.flake.modules.nixos;
         [
@@ -39,6 +41,7 @@
           hw-detect
         ]
       );
+      # client
       sigma = mkNixos "sigma" (
         with config.flake.modules.nixos;
         [
