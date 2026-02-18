@@ -23,31 +23,19 @@
           ]
           ++ extraModules;
         };
+
+      commonModules = with config.flake.modules.nixos; [
+        amd
+        hw-detect
+        qemu-guest
+      ];
     in
     {
       # server
-      lambda = mkNixos "lambda" (
-        with config.flake.modules.nixos;
-        [
-          amd
-          hw-detect
-        ]
-      );
+      lambda = mkNixos "lambda" ((with config.flake.modules.nixos; [ ]) ++ commonModules);
       # router
-      omega = mkNixos "omega" (
-        with config.flake.modules.nixos;
-        [
-          amd
-          hw-detect
-        ]
-      );
+      omega = mkNixos "omega" ((with config.flake.modules.nixos; [ ]) ++ commonModules);
       # client
-      sigma = mkNixos "sigma" (
-        with config.flake.modules.nixos;
-        [
-          amd
-          hw-detect
-        ]
-      );
+      sigma = mkNixos "sigma" ((with config.flake.modules.nixos; [ ]) ++ commonModules);
     };
 }
