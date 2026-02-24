@@ -34,7 +34,7 @@
       # server
       lambda = mkNixos "lambda" ((with config.flake.modules.nixos; [ ]) ++ commonModules);
       # router
-      omega = mkNixos "omega" ((with config.flake.modules.nixos; [ ]) ++ commonModules);
+      omega = mkNixos "omega" ((with config.flake.modules.nixos; [ router ]) ++ commonModules);
       # client
       sigma = mkNixos "sigma" ((with config.flake.modules.nixos; [ ]) ++ commonModules);
     };
