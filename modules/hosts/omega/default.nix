@@ -14,7 +14,7 @@
             prefixLength = 24;
           };
         };
-        "ens37" = {
+        "ens36" = {
           useDHCP = false;
           ipv4.addresses = lib.singleton {
             address = "10.0.2.254";
