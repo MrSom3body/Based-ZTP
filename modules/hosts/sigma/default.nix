@@ -8,7 +8,7 @@
       };
       interfaces = {
         "ens33".ipv4.addresses = lib.singleton {
-          address = "10.0.1.1";
+          address = "10.0.1.10";
           prefixLength = 24;
         };
       };
