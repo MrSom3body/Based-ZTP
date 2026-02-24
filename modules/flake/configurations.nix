@@ -27,7 +27,7 @@
       commonModules = with config.flake.modules.nixos; [
         amd
         hw-detect
-        qemu-guest
+        vmware-guest
       ];
     in
     {
