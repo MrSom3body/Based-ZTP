@@ -2,6 +2,7 @@
 {
   flake.modules.nixos."hosts/all-mgmt" = {
     networking = {
+      networkmanager.unmanaged = [ "ens33" ];
       defaultGateway = {
         address = "10.1.0.254";
         interface = "ens33";
@@ -27,6 +28,7 @@
           name = "/var/lib/kea/dhcp4.leases";
         };
         subnet4 = lib.singleton {
+          id = 1;
           subnet = "10.1.0.0/24";
           pools = lib.singleton { pool = "10.1.0.1 - 10.1.0.99"; };
           option-data = [
