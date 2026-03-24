@@ -31,6 +31,14 @@
       ];
     in
     {
+      ### big topo ###
+      all-mgmt = mkNixos "all-mgmt" commonModules;
+      all-srv-1 = mkNixos "all-srv-1" commonModules;
+      # clients
+      all-ws-1 = mkNixos "all-ws-1" commonModules;
+      all-ws-2 = mkNixos "all-ws-2" commonModules;
+
+      ### nwt infra ###
       # server
       lambda = mkNixos "lambda" ((with config.flake.modules.nixos; [ ]) ++ commonModules);
       # router
