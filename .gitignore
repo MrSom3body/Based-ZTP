@@ -6,3 +6,6 @@ result
 
 ### Jetbrains IDEs ###
 .idea/
+
+### Documents ###
+*.pdf
