@@ -1,4 +1,7 @@
 { lib, ... }:
+let
+  srvIp = "10.1.0.200";
+in
 {
   flake.modules.nixos."hosts/all-mgmt" = {
     networking = {
@@ -37,7 +40,7 @@
             }
             {
               name = "domain-name-servers";
-              data = "9.9.9.9, 149.112.112.112";
+              data = "${srvIp}";
             }
           ];
           valid-lifetime = 86400;
