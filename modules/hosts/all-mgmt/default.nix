@@ -2,7 +2,6 @@
 {
   flake.modules.nixos."hosts/all-mgmt" = {
     networking = {
-      networkmanager.unmanaged = [ "ens33" ];
       defaultGateway = {
         address = "10.1.0.254";
         interface = "ens33";
