@@ -2,7 +2,7 @@ name: nc
 
 services:
   db:
-    image: mariadb:latest # Image to be used
+    image: mariadb:11.8 # Image to be used
     environment:
       - MYSQL_ROOT_PASSWORD=nextcloud
       - MYSQL_PASSWORD=nextcloud
@@ -45,7 +45,7 @@ services:
       - redis
 
   caddy:
-    build: caddy:latest
+    image: docker.io/library/caddy:latest
     restart: unless-stopped
     ports:
       - 0.0.0.0:443:443
