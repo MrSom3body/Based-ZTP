@@ -21,7 +21,7 @@
         ];
         extraOptions = ''
           recursion yes;
-          allow-recursion { 10.1.0.0/16; 127.0.0.1; };
+          allow-recursion { 10.1.0.0/24; 127.0.0.1; };
           allow-transfer { none; };
         '';
         zones = [
