@@ -19,9 +19,12 @@
           "127.0.0.1"
           srvIp
         ];
+        cacheNetworks = [
+          "10.1.0.0/16"
+          "127.0.0.0/8"
+          "::1/128"
+        ];
         extraOptions = ''
-          recursion yes;
-          allow-recursion { 10.1.0.0/24; 127.0.0.1; };
           allow-transfer { none; };
         '';
         zones = [
