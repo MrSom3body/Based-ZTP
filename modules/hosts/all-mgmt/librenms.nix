@@ -11,7 +11,7 @@
         "nets" = [ "10.1.0.0/24" ];
         "discovery_by_ip" = true;
         "snmp.community" = [ "public" ];
-        "discovery_modules.arp-table" = true;
+        "discovery_modules.discovery-arp" = true;
       };
     };
 
