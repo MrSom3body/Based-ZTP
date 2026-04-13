@@ -1,0 +1,55 @@
+name: nc
+
+services:
+  db:
+    image: mariadb:latest # Image to be used
+    environment:
+      - MYSQL_ROOT_PASSWORD=nextcloud
+      - MYSQL_PASSWORD=nextcloud
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+    volumes:
+      - ./data/db:/var/lib/mysql:z
+    restart: unless-stopped
+
+  redis:
+    restart: unless-stopped
+    image: docker.io/library/redis:alpine
+    command: redis-server --requirepass juniorcisco
+
+  nextcloud-app:
+    image: docker.io/library/nextcloud:fpm-alpine
+    restart: unless-stopped
+    environment:
+      - MYSQL_PASSWORD=nextcloud
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_HOST=db
+      - REDIS_HOST=redis
+      - REDIS_HOST_PASSWORD=juniorcisco
+      - TRUSTED_PROXIES=127.0.0.1
+    volumes:
+      - ./data/nc:/var/www/html:z
+    depends_on:
+      - db
+      - redis
+
+  cron:
+    image: docker.io/library/nextcloud:fpm-alpine
+    restart: unless-stopped
+    volumes:
+      - ./data/nc:/var/www/html:z
+    entrypoint: /cron.sh
+    depends_on:
+      - db
+      - redis
+
+  caddy:
+    build: caddy:latest
+    restart: unless-stopped
+    ports:
+      - 0.0.0.0:443:443
+    volumes:
+      - ./data/nc:/var/www/html:z
+      - ./Caddyfile:/etc/caddy/Caddyfile:z
+      - ./data/caddy:/data:z
