@@ -1,9 +1,32 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   flake.modules.nixos."hosts/all-srv-1" =
     { ... }:
     {
       imports = [ inputs.simple-nixos-mailserver.nixosModules.mailserver ];
+
+      # Generate self-signed certificate for internal mail server
+      systemd.services.mail-selfsigned-cert = {
+        description = "Generate self-signed certificate for mailserver";
+        before = [
+          "postfix.service"
+          "dovecot2.service"
+        ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig.Type = "oneshot";
+        serviceConfig.RemainAfterExit = true;
+        script = ''
+          if [ ! -f /var/lib/mailserver/cert.pem ]; then
+            mkdir -p /var/lib/mailserver
+            ${pkgs.openssl}/bin/openssl req -x509 -newkey rsa:4096 \
+              -keyout /var/lib/mailserver/key.pem \
+              -out /var/lib/mailserver/cert.pem \
+              -days 3650 -nodes \
+              -subj "/CN=mail.verdienstnix.bundesheer.bigtopo"
+            chmod 640 /var/lib/mailserver/key.pem
+          fi
+        '';
+      };
 
       mailserver = {
         enable = true;
@@ -11,7 +34,8 @@
         fqdn = "mail.verdienstnix.bundesheer.bigtopo";
         domains = [ "verdienstnix.bundesheer.bigtopo" ];
 
-        certificateScheme = "selfsigned";
+        x509.certificateFile = "/var/lib/mailserver/cert.pem";
+        x509.privateKeyFile = "/var/lib/mailserver/key.pem";
         localDnsResolver = false;
 
         accounts = {
