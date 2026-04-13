@@ -19,6 +19,7 @@
           "127.0.0.1"
           srvIp
         ];
+        listenOnIpv6 = [ "none" ];
         cacheNetworks = [
           "10.1.0.0/16"
           "127.0.0.0/8"
