@@ -1,8 +1,8 @@
 {
-  flake.modules.nixos.bt-librenms = {
+  flake.modules.nixos."hosts/all-mgmt" = {
     services.librenms = {
       enable = true;
-      hostname = "all-mgmt.verdienstnix.big-topo.htl.rennweg.at";
+      hostname = "all-mgmt.verdienstnix.bundesheer.bigtopo";
       database = {
         createLocally = true;
         socket = "/run/mysqld/mysqld.sock";
