@@ -19,6 +19,7 @@
             };
           };
         };
+        nameservers = [ srvIp ];
       };
 
       services.kea.dhcp4 = {
