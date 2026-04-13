@@ -30,18 +30,17 @@
         vmware-guest
       ];
 
-      clientModules = with config.flake.modules.nixos; [
-        desktop
-        bt-snmpd
-      ];
+      bigTopoModules = commonModules ++ (with config.flake.modules.nixos; [ bt-snmpd ]);
+
+      clientModules = with config.flake.modules.nixos; [ desktop ];
     in
     {
       ### big topo ###
-      all-mgmt = mkNixos "all-mgmt" (commonModules ++ (with config.flake.modules.nixos; [ ]));
-      all-srv-1 = mkNixos "all-srv-1" commonModules;
+      all-mgmt = mkNixos "all-mgmt" bigTopoModules;
+      all-srv-1 = mkNixos "all-srv-1" bigTopoModules;
       # clients
-      all-ws-1 = mkNixos "all-ws-1" (commonModules ++ clientModules);
-      all-ws-2 = mkNixos "all-ws-2" (commonModules ++ clientModules);
+      all-ws-1 = mkNixos "all-ws-1" (bigTopoModules ++ clientModules);
+      all-ws-2 = mkNixos "all-ws-2" (bigTopoModules ++ clientModules);
 
       ### nwt infra ###
       # server
