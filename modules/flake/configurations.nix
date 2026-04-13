@@ -29,14 +29,16 @@
         hw-detect
         vmware-guest
       ];
+
+      clientModules = with config.flake.modules.nixos; [ desktop ];
     in
     {
       ### big topo ###
       all-mgmt = mkNixos "all-mgmt" commonModules;
       all-srv-1 = mkNixos "all-srv-1" commonModules;
       # clients
-      all-ws-1 = mkNixos "all-ws-1" commonModules;
-      all-ws-2 = mkNixos "all-ws-2" commonModules;
+      all-ws-1 = mkNixos "all-ws-1" (commonModules ++ clientModules);
+      all-ws-2 = mkNixos "all-ws-2" (commonModules ++ clientModules);
 
       ### nwt infra ###
       # server
