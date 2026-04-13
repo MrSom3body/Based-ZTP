@@ -2,7 +2,7 @@
   flake.modules.nixos."hosts/all-srv-1" =
     { pkgs, ... }:
     let
-      domain = "verdienstnix.big-topo.htl.rennweg.at";
+      domain = "verdienstnix.bundesheer.bigtopo";
       srvIp = "10.1.0.200";
       mgmtIp = "10.1.0.100";
     in
