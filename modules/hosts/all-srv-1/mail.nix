@@ -1,7 +1,7 @@
-{ inputs, pkgs, ... }:
+{ inputs, ... }:
 {
   flake.modules.nixos."hosts/all-srv-1" =
-    { ... }:
+    { pkgs, ... }:
     {
       imports = [ inputs.simple-nixos-mailserver.nixosModules.mailserver ];
 
