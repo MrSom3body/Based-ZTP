@@ -7,12 +7,14 @@
 
       mailserver = {
         enable = true;
+        stateVersion = 4;
         fqdn = "mail.verdienstnix.bundesheer.bigtopo";
         domains = [ "verdienstnix.bundesheer.bigtopo" ];
 
         certificateScheme = "selfsigned";
+        localDnsResolver = false;
 
-        loginAccounts = {
+        accounts = {
           "admin@verdienstnix.bundesheer.bigtopo" = {
             # generate with: mkpasswd -m bcrypt
             hashedPassword = "$2b$05$lQlmTe9Ilo/gPCcaMagN2eeYQfjw0WV2VAPJiBQ6QCbWL9obJ0inK";

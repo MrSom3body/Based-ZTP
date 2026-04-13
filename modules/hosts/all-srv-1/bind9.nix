@@ -50,6 +50,11 @@
               www       IN A   ${srvIp}
               all-srv-1 IN A   ${srvIp}
               all-mgmt  IN A   ${mgmtIp}
+
+              @      IN TXT "v=spf1 mx -all"
+              _dmarc IN TXT "v=DMARC1; p=none;"
+              ; DKIM: after first deploy, copy from /var/dkim/*.mail.txt
+              ; mail._domainkey IN TXT "v=DKIM1; k=rsa; p=..."
             '';
           }
           {
