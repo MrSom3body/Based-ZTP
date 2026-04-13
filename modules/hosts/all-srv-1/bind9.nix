@@ -55,6 +55,10 @@
               _dmarc IN TXT "v=DMARC1; p=none;"
               ; DKIM: after first deploy, copy from /var/dkim/*.mail.txt
               ; mail._domainkey IN TXT "v=DKIM1; k=rsa; p=..."
+              mail._domainkey IN TXT ( "v=DKIM1; k=rsa; "
+                "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmcwNbgS2BCVgbLEUGW75p8YdDBmivSSbz1XPKFuWmq8cJZ1UDtokMYKdQGi/utRqkmkk/BJltsAtGsBY3bZmcc4bTyweu++SkaBs/SzW2dYz+NM6BlMcTQdxdCwZBRuPiTjGexLj6jEzVd6/741rZYVF1JvyPDJGKJKZFy1rSGNGB1z08dHc5QTyzgElIDVYDyUs3bE5ujZfkHtVy"
+                "AJYj55pQfIyYKt7n+1Ps2u4xmMd9zHlzHMYClSPxhHulpNHDq7vrStzwiVpQCgPHPD+b9SFpK9iIpfXFQl7D8n/ZapFhTKiA9mZZqUXLgHRf/4Vohvdwa96JgpGDxX5FPrGkwIDAQAB"
+              ) ;
             '';
           }
           {
