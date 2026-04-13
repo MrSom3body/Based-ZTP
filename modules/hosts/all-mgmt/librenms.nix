@@ -7,6 +7,11 @@
         createLocally = true;
         socket = "/run/mysqld/mysqld.sock";
       };
+      settings = {
+        "nets" = [ "10.1.0.0/24" ];
+        "discovery_by_ip" = true;
+        "snmp.community" = [ "public" ];
+      };
     };
 
     networking.firewall.allowedTCPPorts = [
