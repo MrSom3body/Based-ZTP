@@ -43,7 +43,7 @@
       services.nfs.server = {
         enable = true;
         exports = ''
-          /var/lib/pki/signed  10.1.0.200(ro,no_subtree_check)
+          /var/lib/pki/signed  10.1.0.200(ro,no_subtree_check,no_root_squash)
         '';
       };
 
