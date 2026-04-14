@@ -30,10 +30,10 @@
         accounts = {
           "admin@verdienstnix.bundesheer.bigtopo" = {
             # generate with: mkpasswd -m bcrypt
-            hashedPassword = "$2b$05$lQlmTe9Ilo/gPCcaMagN2eeYQfjw0WV2VAPJiBQ6QCbWL9obJ0inK";
+            hashedPassword = "$2b$05$F3eUVyjAhS2H7x/I2orksOiS129x.N6Ny3wqVKnJto3eJICc5OOtu";
           };
           "hugo@verdienstnix.bundesheer.bigtopo" = {
-            hashedPassword = "$2b$05$4aBqW68jMhwUzLWuUuYbkeKZ23uXNjBqrfLGb/iyOc2HMg4x2WrBq";
+            hashedPassword = "$2b$05$/kBqLP.bSET.bPamjcJcA.WwssdNjbBFoq8U5eQiu2xh.umLLmx3i";
           };
         };
       };
