@@ -37,6 +37,8 @@
               -days   3650 \
               -extfile <(printf "subjectAltName=DNS:mail.verdienstnix.bundesheer.bigtopo\nextendedKeyUsage=serverAuth")
             chmod 600 /var/lib/pki/signed/mail.key
+            # Full chain bundle (leaf cert + CA) for Dovecot/Postfix
+            cat /var/lib/pki/signed/mail.pem /var/lib/pki/ca.pem > /var/lib/pki/signed/mail-bundle.pem
           fi
         '';
       };

@@ -23,7 +23,7 @@
         fqdn = "mail.verdienstnix.bundesheer.bigtopo";
         domains = [ "verdienstnix.bundesheer.bigtopo" ];
 
-        x509.certificateFile = "/var/lib/pki/mail.pem";
+        x509.certificateFile = "/var/lib/pki/mail-bundle.pem";
         x509.privateKeyFile = "/var/lib/pki/mail.key";
         localDnsResolver = false;
 
