@@ -11,10 +11,10 @@
 
       services.bind = {
         enable = true;
-        # forwarders = [
-        #   "9.9.9.9"
-        #   "149.112.112.112"
-        # ];
+        forwarders = [
+          # "9.9.9.9"
+          # "149.112.112.112"
+        ];
         listenOn = [
           "127.0.0.1"
           srvIp
