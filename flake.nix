@@ -11,6 +11,7 @@
     import-tree.url = "github:vic/import-tree";
 
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "nixpkgs/nixos-25.05";
 
     # checks
     treefmt-nix = {

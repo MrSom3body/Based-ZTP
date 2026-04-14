@@ -11,6 +11,7 @@
 
       services.bind = {
         enable = true;
+        package = pkgs.stable.bind;
         forwarders = [
           "9.9.9.9"
           "149.112.112.112"
