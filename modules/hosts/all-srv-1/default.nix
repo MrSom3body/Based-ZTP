@@ -17,6 +17,11 @@
             };
           };
         };
+
+        firewall.allowedTCPPorts = [
+          443
+          4433
+        ];
       };
     };
 }
