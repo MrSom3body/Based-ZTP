@@ -14,8 +14,8 @@
           DisableAppUpdate = true;
           AccountProvisioner = false;
           # Install internal CA so Thunderbird trusts the mail server cert
-          Certificates.Install = lib.optional (builtins.pathExists ./pki/ca.pem) (
-            builtins.toString ./pki/ca.pem
+          Certificates.Install = lib.optional (builtins.pathExists ./bt-pki/ca.pem) (
+            toString ./bt-pki/ca.pem
           );
           "3rdparty".Extensions."thunderbird@example.com" = { };
           EmailPreferences = {

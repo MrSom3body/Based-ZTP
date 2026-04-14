@@ -5,6 +5,6 @@
   flake.modules.nixos.bt-pki =
     { lib, ... }:
     {
-      security.pki.certificateFiles = lib.optional (builtins.pathExists ./pki/ca.pem) ./pki/ca.pem;
+      security.pki.certificateFiles = lib.optional (builtins.pathExists ./ca.pem) ./ca.pem;
     };
 }
