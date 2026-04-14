@@ -42,7 +42,8 @@
     {
       ### big topo ###
       all-mgmt = mkNixos "all-mgmt" bigTopoModules;
-      all-srv-1 = mkNixos "all-srv-1" bigTopoModules ++ (with config.flake.modules.nixos; [ podman ]);
+      all-srv-1 = mkNixos "all-srv-1" (bigTopoModules ++ (with config.flake.modules.nixos; [ podman ]));
+
       # clients
       all-ws-1 = mkNixos "all-ws-1" (bigTopoModules ++ clientModules);
       all-ws-2 = mkNixos "all-ws-2" (bigTopoModules ++ clientModules);
