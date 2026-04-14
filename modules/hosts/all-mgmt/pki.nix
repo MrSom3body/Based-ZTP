@@ -11,16 +11,18 @@
         serviceConfig.Type = "oneshot";
         serviceConfig.RemainAfterExit = true;
         script = ''
-          if [ ! -f /var/lib/pki/ca.pem ]; then
-            mkdir -p /var/lib/pki/signed
+          mkdir -p /var/lib/pki/signed
 
+          if [ ! -f /var/lib/pki/ca.pem ]; then
             # Internal CA
             ${pkgs.openssl}/bin/openssl req -x509 -newkey rsa:4096 -days 3650 -nodes \
               -keyout /var/lib/pki/ca.key \
               -out    /var/lib/pki/ca.pem \
               -subj "/CN=Verdienstnix Internal CA"
             chmod 600 /var/lib/pki/ca.key
+          fi
 
+          if [ ! -f /var/lib/pki/signed/mail.pem ]; then
             # Mail server certificate signed by the CA (SAN required by modern TLS clients)
             ${pkgs.openssl}/bin/openssl req -newkey rsa:4096 -days 3650 -nodes \
               -keyout /var/lib/pki/signed/mail.key \
