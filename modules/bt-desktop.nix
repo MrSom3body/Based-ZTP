@@ -1,11 +1,5 @@
-{ lib, ... }:
 {
-  flake.modules.nixos.desktop = {
-    # Trust the internal mail server's self-signed certificate
-    security.pki.certificateFiles = lib.optionals (builtins.pathExists ./certs/mail.pem) [
-      ./certs/mail.pem
-    ];
-
+  flake.modules.nixos.bt-desktop = {
     services.displayManager.gdm.enable = true;
     services.desktopManager.gnome.enable = true;
 

@@ -30,9 +30,14 @@
         vmware-guest
       ];
 
-      bigTopoModules = commonModules ++ (with config.flake.modules.nixos; [ bt-snmpd ]);
+      bigTopoModules =
+        commonModules
+        ++ (with config.flake.modules.nixos; [
+          bt-snmpd
+          bt-pki
+        ]);
 
-      clientModules = with config.flake.modules.nixos; [ desktop ];
+      clientModules = with config.flake.modules.nixos; [ bt-desktop ];
     in
     {
       ### big topo ###
