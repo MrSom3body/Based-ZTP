@@ -21,7 +21,7 @@
               -subj "/CN=Verdienstnix Internal CA"
             chmod 600 /var/lib/pki/ca.key
 
-            # Mail server certificate signed by the CA
+            # Mail server certificate signed by the CA (SAN required by modern TLS clients)
             ${pkgs.openssl}/bin/openssl req -newkey rsa:4096 -days 3650 -nodes \
               -keyout /var/lib/pki/signed/mail.key \
               -out    /var/lib/pki/signed/mail.csr \
@@ -32,7 +32,8 @@
               -CAkey  /var/lib/pki/ca.key \
               -CAcreateserial \
               -out    /var/lib/pki/signed/mail.pem \
-              -days   3650
+              -days   3650 \
+              -extfile <(echo "subjectAltName=DNS:mail.verdienstnix.bundesheer.bigtopo")
             chmod 600 /var/lib/pki/signed/mail.key
           fi
         '';
