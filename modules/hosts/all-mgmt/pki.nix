@@ -35,7 +35,7 @@
               -CAcreateserial \
               -out    /var/lib/pki/signed/mail.pem \
               -days   3650 \
-              -extfile <(echo "subjectAltName=DNS:mail.verdienstnix.bundesheer.bigtopo")
+              -extfile <(printf "subjectAltName=DNS:mail.verdienstnix.bundesheer.bigtopo\nextendedKeyUsage=serverAuth")
             chmod 600 /var/lib/pki/signed/mail.key
           fi
         '';
