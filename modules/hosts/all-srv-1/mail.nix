@@ -1,31 +1,20 @@
 { inputs, ... }:
 {
   flake.modules.nixos."hosts/all-srv-1" =
-    { pkgs, ... }:
+    { ... }:
     {
       imports = [ inputs.simple-nixos-mailserver.nixosModules.mailserver ];
 
-      # Generate self-signed certificate for internal mail server
-      systemd.services.mail-selfsigned-cert = {
-        description = "Generate self-signed certificate for mailserver";
-        before = [
-          "postfix.service"
-          "dovecot2.service"
+      # Mount signed certs from all-mgmt (CA key stays on all-mgmt)
+      fileSystems."/var/lib/pki" = {
+        device = "10.1.0.100:/var/lib/pki/signed";
+        fsType = "nfs";
+        options = [
+          "ro"
+          "nfsvers=4"
+          "_netdev"
+          "soft"
         ];
-        wantedBy = [ "multi-user.target" ];
-        serviceConfig.Type = "oneshot";
-        serviceConfig.RemainAfterExit = true;
-        script = ''
-          if [ ! -f /var/lib/mailserver/cert.pem ]; then
-            mkdir -p /var/lib/mailserver
-            ${pkgs.openssl}/bin/openssl req -x509 -newkey rsa:4096 \
-              -keyout /var/lib/mailserver/key.pem \
-              -out /var/lib/mailserver/cert.pem \
-              -days 3650 -nodes \
-              -subj "/CN=mail.verdienstnix.bundesheer.bigtopo"
-            chmod 640 /var/lib/mailserver/key.pem
-          fi
-        '';
       };
 
       mailserver = {
@@ -34,8 +23,8 @@
         fqdn = "mail.verdienstnix.bundesheer.bigtopo";
         domains = [ "verdienstnix.bundesheer.bigtopo" ];
 
-        x509.certificateFile = "/var/lib/mailserver/cert.pem";
-        x509.privateKeyFile = "/var/lib/mailserver/key.pem";
+        x509.certificateFile = "/var/lib/pki/mail.pem";
+        x509.privateKeyFile = "/var/lib/pki/mail.key";
         localDnsResolver = false;
 
         accounts = {
