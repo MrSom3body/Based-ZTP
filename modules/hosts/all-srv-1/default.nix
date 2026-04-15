@@ -5,7 +5,7 @@
       networking = {
         nameservers = [ "127.0.0.1" ];
         defaultGateway = {
-          address = "10.1.0.252";
+          address = "10.1.0.254";
           interface = "ens33";
         };
         interfaces = {
