@@ -38,11 +38,14 @@
         ]);
 
       clientModules = with config.flake.modules.nixos; [ bt-desktop ];
+      serverModules = with config.flake.modules.nixos; [ server ];
     in
     {
       ### big topo ###
-      all-mgmt = mkNixos "all-mgmt" bigTopoModules;
-      all-srv-1 = mkNixos "all-srv-1" (bigTopoModules ++ (with config.flake.modules.nixos; [ podman ]));
+      all-mgmt = mkNixos "all-mgmt" (bigTopoModules ++ serverModules);
+      all-srv-1 = mkNixos "all-srv-1" (
+        bigTopoModules ++ serverModules ++ (with config.flake.modules.nixos; [ podman ])
+      );
 
       # clients
       all-ws-1 = mkNixos "all-ws-1" (bigTopoModules ++ clientModules);
