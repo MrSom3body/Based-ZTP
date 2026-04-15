@@ -45,7 +45,7 @@
             serviceConfig = {
               Type = "oneshot";
               RemainAfterExit = true;
-              WorkingDirectory = toString (builtins.dirOf file);
+              WorkingDirectory = toString (dirOf file);
               ExecStart = "${pkgs.podman-compose}/bin/podman-compose up -d";
               ExecStop = "${pkgs.podman-compose}/bin/podman-compose down";
             };
