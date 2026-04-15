@@ -1,5 +1,5 @@
 ubuntu_vms = {
-  "sigma1" = {
+  "sigma" = {
     computer_name = "sigma"
     cpu           = 4
     memory        = 8192
@@ -24,7 +24,7 @@ ubuntu_vms = {
       }
     ]
   },
-  "omega1" = {
+  "omega" = {
     computer_name = "omega"
     cpu           = 4
     memory        = 8192
@@ -34,6 +34,9 @@ ubuntu_vms = {
         network_name = "VLAN421-RemoteAccess"
         ipv4_address = "10.40.21.60"
         ipv4_netmask = 24
+      },
+      {
+        network_name = "VLAN423-INET"
       },
       {
         network_name = "ZTP_LAN1"
@@ -54,7 +57,7 @@ ubuntu_vms = {
       }
     ]
   },
-  "lambda1" = {
+  "lambda" = {
     computer_name = "lambda"
     cpu           = 4
     memory        = 8192
