@@ -30,6 +30,13 @@
         extraOptions = ''
           allow-transfer { none; };
         '';
+        extraConfig = ''
+          zone "bundesheer.bigtopo" {
+            type forward;
+            forwarders { 172.16.7.1; };
+            forward only;
+          };
+        '';
         zones = [
           {
             name = domain;
@@ -62,15 +69,6 @@
                 "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmcwNbgS2BCVgbLEUGW75p8YdDBmivSSbz1XPKFuWmq8cJZ1UDtokMYKdQGi/utRqkmkk/BJltsAtGsBY3bZmcc4bTyweu++SkaBs/SzW2dYz+NM6BlMcTQdxdCwZBRuPiTjGexLj6jEzVd6/741rZYVF1JvyPDJGKJKZFy1rSGNGB1z08dHc5QTyzgElIDVYDyUs3bE5ujZfkHtVy"
                 "AJYj55pQfIyYKt7n+1Ps2u4xmMd9zHlzHMYClSPxhHulpNHDq7vrStzwiVpQCgPHPD+b9SFpK9iIpfXFQl7D8n/ZapFhTKiA9mZZqUXLgHRf/4Vohvdwa96JgpGDxX5FPrGkwIDAQAB"
               ) ;
-            '';
-          }
-          {
-            name = "verzeichnisdienst.bundesheer.bigtopo";
-            master = false;
-            extraConfig = ''
-              type forward;
-              forwarders { 172.16.7.1; };
-              forward only;
             '';
           }
           {
