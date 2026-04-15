@@ -13,6 +13,7 @@
         enable = true;
         package = pkgs.stable.bind;
         forwarders = [
+          "172.16.7.1"
           "9.9.9.9"
           "149.112.112.112"
         ];
@@ -29,13 +30,6 @@
         ];
         extraOptions = ''
           allow-transfer { none; };
-        '';
-        extraConfig = ''
-          zone "bundesheer.bigtopo" {
-            type forward;
-            forwarders { 172.16.7.1; };
-            forward only;
-          };
         '';
         zones = [
           {
