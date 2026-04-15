@@ -60,8 +60,8 @@
               ; DKIM: after first deploy, copy from /var/dkim/*.mail.txt
               ; mail._domainkey IN TXT "v=DKIM1; k=rsa; p=..."
               mail._domainkey IN TXT ( "v=DKIM1; k=rsa; "
-                "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmcwNbgS2BCVgbLEUGW75p8YdDBmivSSbz1XPKFuWmq8cJZ1UDtokMYKdQGi/utRqkmkk/BJltsAtGsBY3bZmcc4bTyweu++SkaBs/SzW2dYz+NM6BlMcTQdxdCwZBRuPiTjGexLj6jEzVd6/741rZYVF1JvyPDJGKJKZFy1rSGNGB1z08dHc5QTyzgElIDVYDyUs3bE5ujZfkHtVy"
-                "AJYj55pQfIyYKt7n+1Ps2u4xmMd9zHlzHMYClSPxhHulpNHDq7vrStzwiVpQCgPHPD+b9SFpK9iIpfXFQl7D8n/ZapFhTKiA9mZZqUXLgHRf/4Vohvdwa96JgpGDxX5FPrGkwIDAQAB"
+                "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAj8JuC3F1fyrOqUF+wHOjFVo13knhNT4JiszW0Cls1hLT5H1m0t7m3LUsW9ApD7CvZ926Fd6DoFiCEj6wNyz6045FT83sDGe4oTMtANeZrxsAm3j36yrph3Tp2bIAXzejq2Bdu1ZfmcURqIFcFxxd7y76XiPQqYuceRR/5gi8XCLFzQFGVNfylpf9nMWGVZivTwGnepxexfGNZqCJE"
+                "O6GlAFWxDraXc63N8cZaYsueBkomRDmLoOdoovlY4Juq3UQf8M5iaGSylGiwQXBoDtPjoIYqww7bI64+YsD8I5YZ1OXgShYiGaR1QtUbv1FYmjcmWIOCcWuUGE08WuAFlFZRwIDAQAB"
               ) ;
             '';
           }
