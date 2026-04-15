@@ -1,6 +1,8 @@
 services:
   checkmk:
     image: "checkmk/check-mk-raw:2.4.0-latest"
+    cap_add:
+      - NET_RAW
     environment:
       - CMK_PASSWORD=Juniorcisco123!
       - TZ=Europe/Vienna
