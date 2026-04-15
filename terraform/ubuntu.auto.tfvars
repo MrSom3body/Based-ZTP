@@ -28,7 +28,6 @@ ubuntu_vms = {
     computer_name = "omega"
     cpu           = 4
     memory        = 8192
-    ipv4_gateway  = "10.40.21.254"
     network_interfaces = [
       {
         network_name = "VLAN421-RemoteAccess"
