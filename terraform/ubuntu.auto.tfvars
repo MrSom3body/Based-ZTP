@@ -3,7 +3,7 @@ ubuntu_vms = {
     computer_name = "sigma"
     cpu           = 4
     memory        = 8192
-    ipv4_gateway  = "10.40.21.254"
+    ipv4_gateway  = "10.0.1.254"
     network_interfaces = [
       {
         network_name = "VLAN421-RemoteAccess"
@@ -60,7 +60,7 @@ ubuntu_vms = {
     computer_name = "lambda"
     cpu           = 4
     memory        = 8192
-    ipv4_gateway  = "10.40.21.254"
+    ipv4_gateway  = "10.0.2.254"
     network_interfaces = [
       {
         network_name = "VLAN421-RemoteAccess"
