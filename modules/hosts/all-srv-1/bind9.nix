@@ -34,8 +34,8 @@
         '';
         extraConfig = ''
           zone "bundesheer.bigtopo" {
-            type forward;
-            forwarders { 172.16.7.1; };
+            type stub;
+            masters { 172.16.7.1; };
           };
         '';
         zones = [
