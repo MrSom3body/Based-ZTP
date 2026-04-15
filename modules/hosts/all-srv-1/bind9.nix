@@ -13,7 +13,6 @@
         enable = true;
         package = pkgs.stable.bind;
         forwarders = [
-          "172.16.7.1"
           "9.9.9.9"
           "149.112.112.112"
         ];
@@ -35,7 +34,7 @@
         extraConfig = ''
           zone "bundesheer.bigtopo" {
             type stub;
-            masters { 172.16.7.1; };
+            masters { 10.4.30.15; };
           };
         '';
         zones = [
