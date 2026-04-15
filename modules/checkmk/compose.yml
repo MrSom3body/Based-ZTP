@@ -9,7 +9,6 @@ services:
     ports:
       - "8080:5000"
       - "8000:8000"
-      - "6556:6556"
     restart: always
 
 volumes:
