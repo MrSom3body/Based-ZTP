@@ -10,8 +10,8 @@
       options.podman.composeProjects = lib.mkOption {
         type = lib.types.attrsOf lib.types.path;
         default = { };
-        description = "Compose projects to deploy automatically, keyed by service name.";
-        example = lib.literalExpression "{ nextcloud = ./nextcloud/compose.yml; }";
+        description = "Compose projects to deploy automatically, keyed by service name. Each value is the directory containing compose.yml.";
+        example = lib.literalExpression "{ nextcloud = ./nextcloud; }";
       };
 
       config = {
@@ -35,8 +35,15 @@
             ;
         };
 
+        systemd.tmpfiles.rules = lib.mapAttrsToList (
+          name: _: "d /var/lib/compose/${name} 0755 root root -"
+        ) config.podman.composeProjects;
+
         systemd.services = lib.mapAttrs' (
-          name: file:
+          name: dir:
+          let
+            workDir = "/var/lib/compose/${name}";
+          in
           lib.nameValuePair "podman-compose-${name}" {
             description = "Podman Compose project ${name}";
             wantedBy = [ "multi-user.target" ];
@@ -45,7 +52,11 @@
             serviceConfig = {
               Type = "oneshot";
               RemainAfterExit = true;
-              WorkingDirectory = toString (dirOf file);
+              WorkingDirectory = workDir;
+              Environment = "PATH=${pkgs.podman}/bin";
+              # Copy compose files from the Nix store into the writable host directory.
+              # -n (no-clobber) preserves any runtime state already present (e.g. data/).
+              ExecStartPre = "${pkgs.bash}/bin/bash -c 'cp -rn ${dir}/. ${workDir}/ && chmod -R u+w ${workDir}'";
               ExecStart = "${pkgs.podman-compose}/bin/podman-compose up -d";
               ExecStop = "${pkgs.podman-compose}/bin/podman-compose down";
             };
