@@ -4,7 +4,7 @@
     {
       environment.systemPackages = with pkgs; [
         dig
-        iputils
+        inetutils
         nmap
       ];
     };
