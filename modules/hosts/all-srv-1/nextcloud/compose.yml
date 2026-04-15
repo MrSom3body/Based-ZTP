@@ -53,3 +53,5 @@ services:
       - ./data/nc:/var/www/html:z
       - ./Caddyfile:/etc/caddy/Caddyfile:z
       - ./data/caddy:/data:z
+      - /var/lib/pki/www-bundle.pem:/cert/www-bundle.pem:ro
+      - /var/lib/pki/www.key:/cert/www.key:ro

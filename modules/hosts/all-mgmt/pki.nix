@@ -22,6 +22,23 @@
             chmod 600 /var/lib/pki/ca.key
           fi
 
+          if [ ! -f /var/lib/pki/signed/www.pem ]; then
+            ${pkgs.openssl}/bin/openssl req -newkey rsa:4096 -days 3650 -nodes \
+              -keyout /var/lib/pki/signed/www.key \
+              -out    /var/lib/pki/signed/www.csr \
+              -subj "/CN=www.verdienstnix.bundesheer.bigtopo"
+            ${pkgs.openssl}/bin/openssl x509 -req \
+              -in     /var/lib/pki/signed/www.csr \
+              -CA     /var/lib/pki/ca.pem \
+              -CAkey  /var/lib/pki/ca.key \
+              -CAcreateserial \
+              -out    /var/lib/pki/signed/www.pem \
+              -days   3650 \
+              -extfile <(printf "subjectAltName=DNS:www.verdienstnix.bundesheer.bigtopo\nextendedKeyUsage=serverAuth")
+            chmod 600 /var/lib/pki/signed/www.key
+            cat /var/lib/pki/signed/www.pem /var/lib/pki/ca.pem > /var/lib/pki/signed/www-bundle.pem
+          fi
+
           if [ ! -f /var/lib/pki/signed/mail.pem ]; then
             # Mail server certificate signed by the CA (SAN required by modern TLS clients)
             ${pkgs.openssl}/bin/openssl req -newkey rsa:4096 -days 3650 -nodes \

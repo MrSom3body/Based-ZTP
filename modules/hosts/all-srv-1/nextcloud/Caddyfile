@@ -1,5 +1,5 @@
-https://localhost:443 {
-    tls internal
+https://www.verdienstnix.bundesheer.bigtopo {
+    tls /cert/www-bundle.pem /cert/www.key
 
     root * /var/www/html
     file_server
