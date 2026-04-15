@@ -1,5 +1,5 @@
 # secrets
-*.tfvars
+terraform.tfvars
 *.tfvars.json
 
 # other stuff
