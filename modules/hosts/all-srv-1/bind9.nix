@@ -30,6 +30,14 @@
         ];
         extraOptions = ''
           allow-transfer { none; };
+          recursion yes;
+        '';
+        extraConfig = ''
+          zone "bundesheer.bigtopo" {
+            type forward;
+            forwarders { 172.16.7.1; };
+            forward only;
+          };
         '';
         zones = [
           {
