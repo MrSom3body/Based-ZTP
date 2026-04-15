@@ -3,7 +3,7 @@
   flake.modules.nixos."hosts/sigma" = {
     networking = {
       defaultGateway = {
-        interface = "ens160";
+        interface = "ens192";
         address = "10.0.1.254";
       };
       interfaces = {
