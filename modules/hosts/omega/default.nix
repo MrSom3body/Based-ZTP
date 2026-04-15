@@ -3,15 +3,22 @@
   flake.modules.nixos."hosts/omega" = {
     networking = {
       interfaces = {
-        "ens33".useDHCP = true;
-        "ens36" = {
+        "ens160" = {
+          useDHCP = false;
+          ipv4.addresses = lib.singleton {
+            address = "10.40.21.60";
+            prefixLength = 24;
+          };
+        };
+        "ens192".useDHCP = true;
+        "ens224" = {
           useDHCP = false;
           ipv4.addresses = lib.singleton {
             address = "10.0.1.254";
             prefixLength = 24;
           };
         };
-        "ens37" = {
+        "ens256" = {
           useDHCP = false;
           ipv4.addresses = lib.singleton {
             address = "10.0.2.254";
@@ -21,10 +28,10 @@
       };
       nat = {
         internalInterfaces = [
-          "ens36"
-          "ens37"
+          "ens224"
+          "ens256"
         ];
-        externalInterface = "ens33";
+        externalInterface = "ens192";
       };
     };
   };
