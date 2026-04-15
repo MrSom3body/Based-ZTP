@@ -1,0 +1,16 @@
+services:
+  checkmk:
+    image: "checkmk/check-mk-raw:2.4.0-latest"
+    environment:
+      - CMK_PASSWORD=Juniorcisco123!
+      - TZ=Europe/Vienna
+    volumes:
+      - monitoring:/omd/sites
+    ports:
+      - "8080:5000"
+      - "8000:8000"
+      - "6556:6556"
+    restart: always
+
+volumes:
+  monitoring:
