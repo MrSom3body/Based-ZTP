@@ -9,8 +9,8 @@
       options = [
         "ro"
         "nfsvers=4"
-        "x-systemd.automount"
-        "noauto"
+        "soft"
+        "timeo=30"
         "_netdev"
       ];
     };
