@@ -6,6 +6,7 @@
         interface = "ens192";
         address = "10.0.1.254";
       };
+      nameservers = [ "10.0.1.254" ];
       interfaces = {
         "ens160".ipv4.addresses = lib.singleton {
           address = "10.40.21.61";
