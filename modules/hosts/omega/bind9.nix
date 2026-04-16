@@ -3,6 +3,7 @@
     { pkgs, ... }:
     let
       domain = "infra.nix";
+      omegaIpMgmt = "10.40.21.60";
       omegaIp1 = "10.0.1.254";
       omegaIp2 = "10.0.2.254";
       lambdaIp = "10.0.2.10";
@@ -20,6 +21,7 @@
         ];
         listenOn = [
           "127.0.0.1"
+          omegaIpMgmt
           omegaIp1
           omegaIp2
         ];
