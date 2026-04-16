@@ -37,7 +37,10 @@
           bt-pki
         ]);
 
-      clientModules = with config.flake.modules.nixos; [ bt-desktop ];
+      btClientModules = with config.flake.modules.nixos; [
+        desktop
+        bt-desktop
+      ];
       serverModules = with config.flake.modules.nixos; [ server ];
     in
     {
@@ -48,8 +51,8 @@
       );
 
       # clients
-      all-ws-1 = mkNixos "all-ws-1" (bigTopoModules ++ clientModules);
-      all-ws-2 = mkNixos "all-ws-2" (bigTopoModules ++ clientModules);
+      all-ws-1 = mkNixos "all-ws-1" (bigTopoModules ++ btClientModules);
+      all-ws-2 = mkNixos "all-ws-2" (bigTopoModules ++ btClientModules);
 
       ### nwt infra ###
       # server
@@ -57,6 +60,6 @@
       # router
       omega = mkNixos "omega" ((with config.flake.modules.nixos; [ router ]) ++ commonModules);
       # client
-      sigma = mkNixos "sigma" ((with config.flake.modules.nixos; [ ]) ++ commonModules);
+      sigma = mkNixos "sigma" ((with config.flake.modules.nixos; [ desktop ]) ++ commonModules);
     };
 }

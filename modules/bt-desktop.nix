@@ -2,11 +2,6 @@
   flake.modules.nixos.bt-desktop =
     { lib, ... }:
     {
-      services.displayManager.gdm.enable = true;
-      services.desktopManager.gnome.enable = true;
-
-      programs.firefox.enable = true;
-
       programs.thunderbird = {
         enable = true;
         policies = {
