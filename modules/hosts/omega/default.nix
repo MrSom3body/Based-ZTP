@@ -34,6 +34,8 @@
         ];
         externalInterface = "ens192";
       };
+
+      firewall.allowedTCPPorts = [ 8080 ];
     };
   };
 }
