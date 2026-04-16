@@ -3,7 +3,14 @@
     { config, pkgs, ... }:
     {
       devShells.default = pkgs.mkShell {
-        packages = builtins.attrValues { inherit (pkgs) git just nixos-anywhere; };
+        packages = builtins.attrValues {
+          inherit (pkgs)
+            compose2nix
+            git
+            just
+            nixos-anywhere
+            ;
+        };
 
         buildInputs = [ ];
 
