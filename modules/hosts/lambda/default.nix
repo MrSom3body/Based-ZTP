@@ -3,7 +3,7 @@
   flake.modules.nixos."hosts/lambda" = {
     networking = {
       defaultGateway = {
-        interface = "ens160";
+        interface = "ens192";
         address = "10.0.2.254";
       };
       interfaces = {
