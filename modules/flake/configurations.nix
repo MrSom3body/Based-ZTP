@@ -60,6 +60,12 @@
       # router
       omega = mkNixos "omega" ((with config.flake.modules.nixos; [ router ]) ++ commonModules);
       # client
-      sigma = mkNixos "sigma" ((with config.flake.modules.nixos; [ desktop ]) ++ commonModules);
+      sigma = mkNixos "sigma" (
+        (with config.flake.modules.nixos; [
+          desktop
+          checkmk-agent
+        ])
+        ++ commonModules
+      );
     };
 }
