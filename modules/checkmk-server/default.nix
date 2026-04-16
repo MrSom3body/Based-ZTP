@@ -8,7 +8,8 @@
 
     services.caddy = {
       enable = true;
-      virtualHosts."http://monitoring.infra.nix".extraConfig = ''
+      virtualHosts."monitoring.infra.nix".extraConfig = ''
+        tls internal
         reverse_proxy localhost:8080
       '';
     };
