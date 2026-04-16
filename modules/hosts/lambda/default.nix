@@ -17,6 +17,8 @@
           prefixLength = 24;
         };
       };
+
+      firewall.allowedTCPPorts = [ 8080 ];
     };
   };
 }
