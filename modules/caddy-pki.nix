@@ -16,7 +16,10 @@ _: {
       '';
     };
 
-    networking.firewall.allowedTCPPorts = [ 2049 ];
+    networking.firewall.allowedTCPPorts = [
+      443
+      2049
+    ];
 
     services.nfs.server.enable = true;
   };
