@@ -56,13 +56,7 @@
 
       ### nwt infra ###
       # server
-      lambda = mkNixos "lambda" (
-        (with config.flake.modules.nixos; [
-          podman
-          checkmk-server
-        ])
-        ++ commonModules
-      );
+      lambda = mkNixos "lambda" ((with config.flake.modules.nixos; [ checkmk-server ]) ++ commonModules);
       # router
       omega = mkNixos "omega" ((with config.flake.modules.nixos; [ router ]) ++ commonModules);
       # client
