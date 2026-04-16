@@ -37,8 +37,6 @@
           bt-pki
         ]);
 
-      infraModules = commonModules ++ (with config.flake.modules.nixos; [ infra-pki ]);
-
       btClientModules = with config.flake.modules.nixos; [
         desktop
         bt-desktop
@@ -58,22 +56,16 @@
 
       ### nwt infra ###
       # server
-      lambda = mkNixos "lambda" (
-        (with config.flake.modules.nixos; [
-          checkmk-server
-          caddy-pki
-        ])
-        ++ commonModules
-      );
+      lambda = mkNixos "lambda" ((with config.flake.modules.nixos; [ checkmk-server ]) ++ commonModules);
       # router
-      omega = mkNixos "omega" ((with config.flake.modules.nixos; [ router ]) ++ infraModules);
+      omega = mkNixos "omega" ((with config.flake.modules.nixos; [ router ]) ++ commonModules);
       # client
       sigma = mkNixos "sigma" (
         (with config.flake.modules.nixos; [
           desktop
           checkmk-agent
         ])
-        ++ infraModules
+        ++ commonModules
       );
     };
 }
