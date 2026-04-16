@@ -1,4 +1,3 @@
-{ lib, ... }:
 {
   # Mounts lambda's Caddy CA cert via NFS and adds it to the system trust store.
   # On first boot (before NFS is available) the trust store entry is simply skipped.
@@ -15,6 +14,6 @@
       ];
     };
 
-    security.pki.certificateFiles = lib.optional (builtins.pathExists /var/lib/caddy-pki/root.crt) /var/lib/caddy-pki/root.crt;
+    security.pki.certificateFiles = [ ./caddy-root.crt ];
   };
 }
