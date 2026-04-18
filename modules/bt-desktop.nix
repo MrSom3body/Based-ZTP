@@ -24,7 +24,7 @@
             emailOutgoingServer = {
               secure = true;
               hostname = "mail.verdienstnix.bundesheer.bigtopo";
-              port = 587;
+              port = 465;
             };
           };
         };
